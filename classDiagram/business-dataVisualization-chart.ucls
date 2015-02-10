@@ -1,0 +1,56 @@
+<class-diagram version="1.0.4" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="business.dataVisualization.chart.CandleStickChart" 
+    project="AutoTrading" file="/AutoTrading/src/business/dataVisualization/chart/CandleStickChart.java" binary="false">    
+    <position height="147" width="206" x="287" y="400"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="business.dataVisualization.chart.ChartStyle" 
+    project="AutoTrading" file="/AutoTrading/src/business/dataVisualization/chart/ChartStyle.java" binary="false">    
+    <position height="115" width="140" x="533" y="400"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="business.dataVisualization.chart.LineChart" 
+    project="AutoTrading" file="/AutoTrading/src/business/dataVisualization/chart/LineChart.java" binary="false">    
+    <position height="147" width="206" x="41" y="400"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="business.dataVisualization.chart.VisulizationChart" 
+    project="AutoTrading" file="/AutoTrading/src/business/dataVisualization/chart/VisulizationChart.java" binary="false">    
+    <position height="323" width="378" x="287" y="37"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <generalization>    
+    <end type="SOURCE" nodeId="3"/>    
+    <end type="TARGET" nodeId="4"/>  
+  </generalization>  
+  <generalization>    
+    <end type="SOURCE" nodeId="1"/>    
+    <end type="TARGET" nodeId="4"/>  
+  </generalization>  
+  <association>    
+    <end type="SOURCE" nodeId="4" navigable="false">      
+      <attribute name="CHART_STYLES"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" nodeId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

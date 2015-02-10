@@ -1,0 +1,134 @@
+<class-diagram version="1.0.4" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" 
+    name="presentation.guiForDecisionAlgorithmEvaluation.AddNewDecAlgJPanel" project="AutoTrading" 
+    file="/AutoTrading/src/presentation/guiForDecisionAlgorithmEvaluation/AddNewDecAlgJPanel.java" binary="false">    
+    <position height="339" width="284" x="346" y="1104"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" 
+    name="presentation.guiForDecisionAlgorithmEvaluation.AddNewDecEvaCriteriaJPanel" project="AutoTrading" 
+    file="/AutoTrading/src/presentation/guiForDecisionAlgorithmEvaluation/AddNewDecEvaCriteriaJPanel.java" 
+    binary="false">    
+    <position height="291" width="261" x="1482" y="1104"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" 
+    name="presentation.guiForDecisionAlgorithmEvaluation.CriteriaOutputJPanel" project="AutoTrading" 
+    file="/AutoTrading/src/presentation/guiForDecisionAlgorithmEvaluation/CriteriaOutputJPanel.java" binary="false">    
+    <position height="131" width="246" x="1196" y="1104"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" 
+    name="presentation.guiForDecisionAlgorithmEvaluation.DecisionAlgorithmEvaluationJPanel" project="AutoTrading" 
+    file="/AutoTrading/src/presentation/guiForDecisionAlgorithmEvaluation/DecisionAlgorithmEvaluationJPanel.java" 
+    binary="false">    
+    <position height="1027" width="333" x="670" y="37"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" 
+    name="presentation.guiForDecisionAlgorithmEvaluation.ImportPortfolioJPanel" project="AutoTrading" 
+    file="/AutoTrading/src/presentation/guiForDecisionAlgorithmEvaluation/ImportPortfolioJPanel.java" binary="false">    
+    <position height="547" width="265" x="41" y="1104"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" 
+    name="presentation.guiForDecisionAlgorithmEvaluation.RowHeaderJPanel" project="AutoTrading" 
+    file="/AutoTrading/src/presentation/guiForDecisionAlgorithmEvaluation/RowHeaderJPanel.java" binary="false">    
+    <position height="307" width="486" x="670" y="1104"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="7" corner="BOTTOM_RIGHT" language="java" 
+    name="presentation.guiForDecisionAlgorithmEvaluation.ViewOrderJPanel" project="AutoTrading" 
+    file="/AutoTrading/src/presentation/guiForDecisionAlgorithmEvaluation/ViewOrderJPanel.java" binary="false">    
+    <position height="147" width="206" x="800" y="1691"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="8" corner="BOTTOM_RIGHT" language="java" 
+    name="presentation.guiForDecisionAlgorithmEvaluation.ViewPortfolioJPanel" project="AutoTrading" 
+    file="/AutoTrading/src/presentation/guiForDecisionAlgorithmEvaluation/ViewPortfolioJPanel.java" binary="false">    
+    <position height="147" width="219" x="541" y="1691"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <dependency>    
+    <end type="SOURCE" nodeId="6"/>    
+    <end type="TARGET" nodeId="7"/>  
+  </dependency>  
+  <dependency>    
+    <end type="SOURCE" nodeId="4"/>    
+    <end type="TARGET" nodeId="6"/>  
+  </dependency>  
+  <dependency>    
+    <end type="SOURCE" nodeId="4"/>    
+    <end type="TARGET" nodeId="3"/>  
+  </dependency>  
+  <association>    
+    <end type="SOURCE" nodeId="4" navigable="false">      
+      <attribute name="addNewDecAlgJPanel">        
+        <position height="14" width="111" x="489" y="1011"/>      
+      </attribute>      
+      <multiplicity minimum="0" maximum="1">        
+        <position height="14" width="18" x="624" y="1013"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" nodeId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <end type="SOURCE" nodeId="4" navigable="false">      
+      <attribute name="importPortfolioJPanel">        
+        <position height="14" width="103" x="320" y="1052"/>      
+      </attribute>      
+      <multiplicity minimum="0" maximum="1">        
+        <position height="14" width="18" x="443" y="1059"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" nodeId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency>    
+    <end type="SOURCE" nodeId="6"/>    
+    <end type="TARGET" nodeId="8"/>  
+  </dependency>  
+  <association>    
+    <end type="SOURCE" nodeId="4" navigable="false">      
+      <attribute name="addNewDecEvaCriteriaJPanel">        
+        <position height="14" width="147" x="1323" y="970"/>      
+      </attribute>      
+      <multiplicity minimum="0" maximum="1">        
+        <position height="14" width="18" x="1278" y="971"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" nodeId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

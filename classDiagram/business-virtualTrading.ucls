@@ -1,0 +1,98 @@
+<class-diagram version="1.0.4" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="business.virtualTrading.Asset" project="AutoTrading" 
+    file="/AutoTrading/src/business/virtualTrading/Asset.java" binary="false">    
+    <position height="291" width="208" x="286" y="1430"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="business.virtualTrading.Order" project="AutoTrading" 
+    file="/AutoTrading/src/business/virtualTrading/Order.java" binary="false">    
+    <position height="403" width="224" x="41" y="987"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="business.virtualTrading.PortfolioEntry" 
+    project="AutoTrading" file="/AutoTrading/src/business/virtualTrading/PortfolioEntry.java" binary="false">    
+    <position height="403" width="219" x="326" y="987"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="business.virtualTrading.User" project="AutoTrading" 
+    file="/AutoTrading/src/business/virtualTrading/User.java" binary="false">    
+    <position height="739" width="266" x="52" y="208"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="business.virtualTrading.UserList" project="AutoTrading" 
+    file="/AutoTrading/src/business/virtualTrading/UserList.java" binary="false">    
+    <position height="131" width="206" x="339" y="37"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <association>    
+    <end type="SOURCE" nodeId="4" navigable="false">      
+      <attribute name="curOrderList"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" nodeId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <end type="SOURCE" nodeId="2" navigable="false">      
+      <attribute name="asset"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" nodeId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency>    
+    <bendpoint x="295" y="987"/>    
+    <end type="SOURCE" nodeId="4"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </dependency>  
+  <association>    
+    <end type="SOURCE" nodeId="5" navigable="false">      
+      <attribute name="userList"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" nodeId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency>    
+    <bendpoint x="348" y="208"/>    
+    <end type="SOURCE" nodeId="5"/>    
+    <end type="TARGET" nodeId="3"/>  
+  </dependency>  
+  <association>    
+    <end type="SOURCE" nodeId="3" navigable="false">      
+      <attribute name="asset"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" nodeId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <end type="SOURCE" nodeId="4" navigable="false">      
+      <attribute name="curPortfolioList"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" nodeId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

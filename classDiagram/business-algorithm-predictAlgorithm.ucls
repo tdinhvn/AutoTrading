@@ -1,0 +1,152 @@
+<class-diagram version="1.0.4" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" 
+    name="business.algorithm.predictAlgorithm.AbstractPredictAlgorithm" project="AutoTrading" 
+    file="/AutoTrading/src/business/algorithm/predictAlgorithm/AbstractPredictAlgorithm.java" binary="false">    
+    <position height="211" width="405" x="409" y="208"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="business.algorithm.predictAlgorithm.AutoRegressionMA" 
+    project="AutoTrading" file="/AutoTrading/src/business/algorithm/predictAlgorithm/AutoRegressionMA.java" 
+    binary="false">    
+    <position height="291" width="485" x="449" y="459"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="business.algorithm.predictAlgorithm.AutoRegressionFE" 
+    project="AutoTrading" file="/AutoTrading/src/business/algorithm/predictAlgorithm/AutoRegressionFE.java" 
+    binary="false">    
+    <position height="307" width="481" x="974" y="459"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="business.algorithm.predictAlgorithm.OutputForAutoRegression" 
+    project="AutoTrading" file="/AutoTrading/src/business/algorithm/predictAlgorithm/OutputForAutoRegression.java" 
+    binary="false">    
+    <position height="131" width="409" x="502" y="977"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" 
+    name="business.algorithm.predictAlgorithm.OutputForPredictionAlgorithm" project="AutoTrading" 
+    file="/AutoTrading/src/business/algorithm/predictAlgorithm/OutputForPredictionAlgorithm.java" binary="false">    
+    <position height="131" width="388" x="409" y="806"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="7" corner="BOTTOM_RIGHT" language="java" name="business.algorithm.predictAlgorithm.PredictAlgorithmAPI" 
+    project="AutoTrading" file="/AutoTrading/src/business/algorithm/predictAlgorithm/PredictAlgorithmAPI.java" 
+    binary="false">    
+    <position height="131" width="289" x="835" y="37"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="8" corner="BOTTOM_RIGHT" language="java" name="business.algorithm.predictAlgorithm.PriceEntry" 
+    project="AutoTrading" file="/AutoTrading/src/business/algorithm/predictAlgorithm/PriceEntry.java" binary="false">    
+    <position height="163" width="155" x="660" y="1148"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="9" corner="BOTTOM_RIGHT" language="java" name="business.algorithm.predictAlgorithm.Utility" 
+    project="AutoTrading" file="/AutoTrading/src/business/algorithm/predictAlgorithm/Utility.java" binary="false">    
+    <position height="99" width="399" x="42" y="977"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <dependency>    
+    <bendpoint x="983" y="806"/>    
+    <bendpoint x="983" y="977"/>    
+    <end type="SOURCE" nodeId="3"/>    
+    <end type="TARGET" nodeId="8"/>  
+  </dependency>  
+  <generalization>    
+    <end type="SOURCE" nodeId="4"/>    
+    <end type="TARGET" nodeId="6"/>  
+  </generalization>  
+  <dependency>    
+    <end type="SOURCE" nodeId="4"/>    
+    <end type="TARGET" nodeId="8"/>  
+  </dependency>  
+  <dependency>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="6"/>  
+  </dependency>  
+  <dependency>    
+    <end type="SOURCE" nodeId="7"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </dependency>  
+  <generalization>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </generalization>  
+  <dependency>    
+    <end type="SOURCE" nodeId="9"/>    
+    <end type="TARGET" nodeId="8"/>  
+  </dependency>  
+  <dependency>    
+    <bendpoint x="471" y="977"/>    
+    <end type="SOURCE" nodeId="6"/>    
+    <end type="TARGET" nodeId="8"/>  
+  </dependency>  
+  <dependency>    
+    <bendpoint x="418" y="459"/>    
+    <end type="SOURCE" nodeId="1"/>    
+    <end type="TARGET" nodeId="6"/>  
+  </dependency>  
+  <dependency>    
+    <bendpoint x="941" y="806"/>    
+    <bendpoint x="941" y="977"/>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="8"/>  
+  </dependency>  
+  <dependency>    
+    <end type="SOURCE" nodeId="3"/>    
+    <end type="TARGET" nodeId="6"/>  
+  </dependency>  
+  <generalization>    
+    <end type="SOURCE" nodeId="3"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </generalization>  
+  <dependency>    
+    <bendpoint x="962" y="806"/>    
+    <end type="SOURCE" nodeId="3"/>    
+    <end type="TARGET" nodeId="4"/>  
+  </dependency>  
+  <dependency>    
+    <bendpoint x="913" y="208"/>    
+    <end type="SOURCE" nodeId="7"/>    
+    <end type="TARGET" nodeId="3"/>  
+  </dependency>  
+  <dependency>    
+    <bendpoint x="844" y="208"/>    
+    <end type="SOURCE" nodeId="7"/>    
+    <end type="TARGET" nodeId="2"/>  
+  </dependency>  
+  <dependency>    
+    <bendpoint x="827" y="806"/>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="4"/>  
+  </dependency>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

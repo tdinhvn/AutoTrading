@@ -1,0 +1,97 @@
+<class-diagram version="1.0.4" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="presentation.guiForVirtualTrading.AddNewOrderJPanel" 
+    project="AutoTrading" file="/AutoTrading/src/presentation/guiForVirtualTrading/AddNewOrderJPanel.java" 
+    binary="false">    
+    <position height="515" width="298" x="257" y="944"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="presentation.guiForVirtualTrading.AddNewPortfolioJPanel" 
+    project="AutoTrading" file="/AutoTrading/src/presentation/guiForVirtualTrading/AddNewPortfolioJPanel.java" 
+    binary="false">    
+    <position height="547" width="298" x="595" y="1611"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="presentation.guiForVirtualTrading.AddNewUserJPanel" 
+    project="AutoTrading" file="/AutoTrading/src/presentation/guiForVirtualTrading/AddNewUserJPanel.java" binary="false">    
+    <position height="627" width="329" x="595" y="944"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="presentation.guiForVirtualTrading.OrderTableModel" 
+    project="AutoTrading" file="/AutoTrading/src/presentation/guiForVirtualTrading/OrderTableModel.java" binary="false">    
+    <position height="371" width="176" x="41" y="944"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="presentation.guiForVirtualTrading.PortfolioTableModel" 
+    project="AutoTrading" file="/AutoTrading/src/presentation/guiForVirtualTrading/PortfolioTableModel.java" 
+    binary="false">    
+    <position height="371" width="236" x="933" y="1611"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" name="presentation.guiForVirtualTrading.VirtualTradingJPanel" 
+    project="AutoTrading" file="/AutoTrading/src/presentation/guiForVirtualTrading/VirtualTradingJPanel.java" 
+    binary="false">    
+    <position height="867" width="308" x="595" y="37"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <association>    
+    <end type="SOURCE" nodeId="3" navigable="false">      
+      <attribute name="addNewPortfolioJPanel"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" nodeId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <end type="SOURCE" nodeId="6" navigable="false">      
+      <attribute name="addNewUserJPanel"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" nodeId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency>    
+    <bendpoint x="954" y="944"/>    
+    <end type="SOURCE" nodeId="6"/>    
+    <end type="TARGET" nodeId="5"/>  
+  </dependency>  
+  <association>    
+    <end type="SOURCE" nodeId="6" navigable="false">      
+      <attribute name="addNewOrderJPanel"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" nodeId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency>    
+    <end type="SOURCE" nodeId="6"/>    
+    <end type="TARGET" nodeId="4"/>  
+  </dependency>  
+  <dependency>    
+    <end type="SOURCE" nodeId="3"/>    
+    <end type="TARGET" nodeId="5"/>  
+  </dependency>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

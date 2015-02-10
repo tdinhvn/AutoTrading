@@ -1,0 +1,47 @@
+<class-diagram version="1.0.4" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="business.decisionAlgorithmEvaluation.DecisionCriteria" 
+    project="AutoTrading" file="/AutoTrading/src/business/decisionAlgorithmEvaluation/DecisionCriteria.java" 
+    binary="false">    
+    <position height="179" width="275" x="41" y="192"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" 
+    name="business.decisionAlgorithmEvaluation.DecisionAlgorithmEvaluationAPI" project="AutoTrading" 
+    file="/AutoTrading/src/business/decisionAlgorithmEvaluation/DecisionAlgorithmEvaluationAPI.java" binary="false">    
+    <position height="115" width="244" x="337" y="37"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="business.decisionAlgorithmEvaluation.VsVNIndex" 
+    project="AutoTrading" file="/AutoTrading/src/business/decisionAlgorithmEvaluation/VsVNIndex.java" binary="false">    
+    <position height="163" width="267" x="314" y="411"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <generalization>    
+    <end type="SOURCE" nodeId="3"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </generalization>  
+  <dependency>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </dependency>  
+  <dependency>    
+    <bendpoint x="346" y="192"/>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="3"/>  
+  </dependency>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

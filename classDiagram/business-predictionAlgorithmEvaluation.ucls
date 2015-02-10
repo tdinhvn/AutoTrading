@@ -1,0 +1,47 @@
+<class-diagram version="1.0.4" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="business.predictionAlgorithmEvaluation.PredictionCriteria" 
+    project="AutoTrading" file="/AutoTrading/src/business/predictionAlgorithmEvaluation/PredictionCriteria.java" 
+    binary="false">    
+    <position height="163" width="504" x="41" y="208"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="business.predictionAlgorithmEvaluation.SumSquare" 
+    project="AutoTrading" file="/AutoTrading/src/business/predictionAlgorithmEvaluation/SumSquare.java" binary="false">    
+    <position height="131" width="267" x="549" y="411"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" 
+    name="business.predictionAlgorithmEvaluation.PredictionAlgorithmEvaluationAPI" project="AutoTrading" 
+    file="/AutoTrading/src/business/predictionAlgorithmEvaluation/PredictionAlgorithmEvaluationAPI.java" binary="false">    
+    <position height="131" width="250" x="566" y="37"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <dependency>    
+    <end type="SOURCE" nodeId="3"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </dependency>  
+  <generalization>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </generalization>  
+  <dependency>    
+    <bendpoint x="575" y="208"/>    
+    <end type="SOURCE" nodeId="3"/>    
+    <end type="TARGET" nodeId="2"/>  
+  </dependency>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

@@ -1,0 +1,58 @@
+<class-diagram version="1.0.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="dataAccess.databaseManagement.entity.AssetEntity" 
+    project="AutoTrading" file="/AutoTrading/src/dataAccess/databaseManagement/entity/AssetEntity.java" binary="false">    
+    <position height="-1" width="-1" x="162" y="818"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="dataAccess.databaseManagement.entity.ExchangeEntity" 
+    project="AutoTrading" file="/AutoTrading/src/dataAccess/databaseManagement/entity/ExchangeEntity.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="408" y="747"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="dataAccess.databaseManagement.entity.OrderEntity" 
+    project="AutoTrading" file="/AutoTrading/src/dataAccess/databaseManagement/entity/OrderEntity.java" binary="false">    
+    <position height="483" width="305" x="315" y="37"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="dataAccess.databaseManagement.entity.PortfolioEntity" 
+    project="AutoTrading" file="/AutoTrading/src/dataAccess/databaseManagement/entity/PortfolioEntity.java" 
+    binary="false">    
+    <position height="387" width="234" x="41" y="37"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="dataAccess.databaseManagement.entity.PriceEntity" 
+    project="AutoTrading" file="/AutoTrading/src/dataAccess/databaseManagement/entity/PriceEntity.java" binary="false">    
+    <position height="547" width="326" x="660" y="37"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" name="dataAccess.databaseManagement.entity.UserEntity" 
+    project="AutoTrading" file="/AutoTrading/src/dataAccess/databaseManagement/entity/UserEntity.java" binary="false">    
+    <position height="-1" width="-1" x="748" y="728"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
