@@ -314,7 +314,6 @@ public class AssetManager {
 
 	public ArrayList<AssetEntity> getAssetsBySymbol(String symbol) {
 		try {
-
 			String queryString = "SELECT * FROM asset WHERE symbol=?";
 			connection = getConnection();
 			ptmt = connection.prepareStatement(queryString);
