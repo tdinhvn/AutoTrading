@@ -7,18 +7,18 @@ import dataAccess.databaseManagement.manager.AssetManager;
 import dataAccess.databaseManagement.manager.ExchangeManager;
 import dataAccess.databaseManagement.manager.PriceManager;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.http.HttpResponse;
@@ -49,6 +49,7 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
         this.exchangeNameList = new ArrayList<>();
         this.exchangeNameList.add("HOSE");
         this.exchangeNameList.add("HASTC");
+        this.exchangeNameList.add("UPCOM");
         this.exchangeNameList.add("INDEX");
     }
 
@@ -58,8 +59,12 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
         return url;
     }
 
-    private String getUrlOfCompanyInformationBySymbol(String symbol) {
+    private String getUrlOfCompanyInformationByAssetSymbol(String symbol) {
         return "http://www.cophieu68.vn/profilesymbol.php?id=" + symbol;
+    }
+
+    private String getUrlOfPriceDataFileByAssetSymbol(String symbol) {
+        return "http://www.cophieu68.vn/export/excel.php?id=" + symbol.replace("^", "%5E");
     }
 
     private void initLocalContext() {
@@ -182,7 +187,7 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
         for (String assetSymbol : assetSymbols) {
             if (assetManager.getAssetsBySymbol(assetSymbol).isEmpty()) {
                 try {
-                    Document doc = Jsoup.connect(getUrlOfCompanyInformationBySymbol(assetSymbol)).get();
+                    Document doc = Jsoup.connect(getUrlOfCompanyInformationByAssetSymbol(assetSymbol)).get();
                     String exchangemarket = doc.getElementsContainingOwnText("Sàn Giao Dịch").get(0).parent().child(1).text();
                     String companyname = doc.getElementById("begin_header").getElementsByTag("h1").text();
                     String assetInfo = "";
@@ -200,7 +205,7 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
                             } else {
                                 assetEntity = new AssetEntity(companyname, assetSymbol, upcom.getExchangeID(), assetInfo, 0.15);
                             }
-                            break;   
+                            break;
                     }
                     assetManager.add(assetEntity);
                     System.out.println("Added asset " + assetSymbol + ".");
@@ -362,10 +367,6 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
 
     @Override
     public boolean updateData(AssetEntity assetEntity) {
-        // TODO Auto-generated method stub
-
-        initLocalContext();
-
         PriceManager priceManager = new PriceManager();
         DateFormat df = new SimpleDateFormat("yyyyMMdd");
 
@@ -373,14 +374,8 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
         Double open, high, close, low, volume;
         String splitString[];
 
-        String fileLink = "http://www.cophieu68.vn/export/excel.php?id=" + assetEntity.getSymbol();
-        fileLink = fileLink.replace("^", "%5E");
-
         try {
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(fileLink);
-
-            HttpResponse response = httpclient.execute(httpGet, localContext);
+            HttpResponse response = getHttpResponse(getUrlOfPriceDataFileByAssetSymbol(assetEntity.getSymbol()));
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     response.getEntity().getContent()));
 
@@ -412,8 +407,10 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
                     priceManager.update(priceEntity);
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            priceManager.closeConnection();
+        } catch (IOException | ParseException | SQLException ex) {
+            Logger.getLogger(Cophieu68DataUpdate.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
 
         return true;
@@ -421,6 +418,12 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
 
     public static void main(String[] args) throws IOException {
         Cophieu68DataUpdate updater = new Cophieu68DataUpdate();
-        updater.updateAssetList();
+        //updater.updateAssetList();
+        
+        AssetManager assetManager = new AssetManager();
+        for (AssetEntity assetEntity : assetManager.getAllAssets()) {
+            System.out.println(assetEntity.toString());
+            updater.updateData(assetEntity);
+        }
     }
 }
