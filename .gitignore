@@ -1,0 +1,10 @@
+# ignore eclipse setting files
+.classpath
+.project
+.settings
+bin
+# ignore netbeans setting files
+nbproject
+build
+build.xml
+manifest.mf
