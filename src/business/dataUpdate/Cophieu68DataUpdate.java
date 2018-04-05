@@ -9,15 +9,11 @@ import dataAccess.databaseManagement.manager.PriceManager;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.SQLException;
-import java.text.DateFormat;
+import java.sql.Date;
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -86,35 +82,9 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
                 post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 httpclient.execute(post, localContext);
                 httpclient.getConnectionManager().shutdown();
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException ex) {
+                Logger.getLogger(Cophieu68DataUpdate.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-    }
-
-    public HttpResponse getHttpResponse(String exchangeName, Date date) {
-        try {
-            initLocalContext();
-
-            String fileLink;
-            if (exchangeName.equals("HASTC")) {
-                fileLink = "http://www.cophieu68.vn/export/dailymetastock.php?stcid=2&date=";
-            } else if (exchangeName.equals("HOSE")) {
-                fileLink = "http://www.cophieu68.vn/export/dailymetastock.php?stcid=1&date=";
-            } else {
-                fileLink = "http://www.cophieu68.vn/export/dailymetastock.php?stcid=0&date=";
-            }
-            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-            String fileName = dateFormat.format(date);
-            fileLink = fileLink.concat(fileName);
-
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(fileLink);
-
-            return httpclient.execute(httpGet, localContext);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
         }
     }
 
@@ -126,8 +96,8 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
             HttpGet httpGet = new HttpGet(fileLink);
 
             return httpclient.execute(httpGet, localContext);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            Logger.getLogger(Cophieu68DataUpdate.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -215,40 +185,29 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
                 }
             }
         }
-
+        
+        assetManager.closeConnection();
         return true;
     }
 
     @Override
-    public boolean updateDataFromDateToDate(String exchangeName, Date fromDate, Date toDate) {
-        // TODO Auto-generated method stub
-
+    public boolean updateDataFromDateToDate(LocalDate fromDate, LocalDate toDate) {
         PriceManager priceManager = new PriceManager();
         AssetManager assetManager = new AssetManager();
 
         DecimalFormat decimalf = new DecimalFormat("#.##");
-
-        ArrayList<Date> listDate = new ArrayList<Date>();
-        for (Date date = fromDate; !date.after(toDate); date = new Date(date.getTime() + 24 * 60 * 60 * 1000)) {
-            listDate.add(date);
-        }
 
         Double open, high, close, low, volume;
         String splitString[];
         String assetSymbol;
         HttpResponse response;
 
-        int size = listDate.size();
-        if (exchangeName.equals("All")) {
-            size *= assetManager.getAllAssets().size();
-        } else {
-            size *= assetManager.getAssetsByExchange(new ExchangeManager().getExchangeByName(exchangeName).getExchangeID()).size();
-        }
+        int size = (fromDate.until(toDate).getDays() + 1) * assetManager.getAllAssets().size();
 
         double i = 0;
         completePercentage = "0.0%";
-        for (Date date : listDate) {
-            response = getHttpResponse(exchangeName, date);
+        for (LocalDate date = fromDate; !date.isAfter(toDate); date = date.plusDays(1)) {
+            response = getHttpResponse(getUrlOfDailyPriceDataFile(date));
             if (response != null) {
                 try {
                     BufferedReader br = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
@@ -258,10 +217,6 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
                         splitString = strLine.split(",");
 
                         assetSymbol = splitString[0];
-                        if (assetSymbol.charAt(0) != '^' && exchangeName.equals("INDEX")) {
-                            continue;
-                        }
-
                         open = Double.valueOf(splitString[2]);
                         high = Double.valueOf(splitString[3]);
                         low = Double.valueOf(splitString[4]);
@@ -275,12 +230,12 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
 
                         PriceEntity priceEntity = priceManager.getPriceByAssetIDAndDate(
                                 assetList.get(0).getAssetID(),
-                                new java.sql.Date(date.getTime()));
+                                java.sql.Date.valueOf(date));
 
                         if (priceEntity == null) {
                             priceEntity = new PriceEntity(
                                     assetList.get(0).getAssetID(),
-                                    new java.sql.Date(date.getTime()), null,
+                                    java.sql.Date.valueOf(date), null,
                                     volume, close, open, high, low);
                             priceManager.add(priceEntity);
                         } else {
@@ -295,82 +250,26 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
                     }
                     br.close();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (IOException | IllegalStateException | NumberFormatException ex) {
+                    Logger.getLogger(Cophieu68DataUpdate.class.getName()).log(Level.SEVERE, null, ex);
+                    return false;
                 }
             }
         }
+
+        priceManager.closeConnection();
+        assetManager.closeConnection();
         return true;
     }
 
     @Override
-    public boolean updateDataFromDateToDate(AssetEntity assetEntity, Date fromDate, Date toDate) {
-        // TODO Auto-generated method stub
-
+    public boolean updateDataFromDateToDate(AssetEntity assetEntity, LocalDate fromDate, LocalDate toDate) {
         initLocalContext();
 
         PriceManager priceManager = new PriceManager();
-        DateFormat df = new SimpleDateFormat("yyyyMMdd");
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyyMMdd");
 
-        Date tempDate;
-        Double open, high, close, low, volume;
-        String splitString[];
-
-        String fileLink = "http://www.cophieu68.vn/export/excel.php?id=" + assetEntity.getSymbol();
-        fileLink = fileLink.replace("^", "%5E");
-
-        try {
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(fileLink);
-
-            HttpResponse response = httpclient.execute(httpGet, localContext);
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    response.getEntity().getContent()));
-
-            String strLine = br.readLine();
-            while ((strLine = br.readLine()) != null) {
-                splitString = strLine.split(",");
-                tempDate = df.parse(splitString[1]);
-                if ((tempDate.after(toDate)) || (tempDate.before(fromDate))) {
-                    continue;
-                }
-                open = Double.valueOf(splitString[2]);
-                high = Double.valueOf(splitString[3]);
-                low = Double.valueOf(splitString[4]);
-                close = Double.valueOf(splitString[5]);
-                volume = Double.valueOf(splitString[6]);
-
-                PriceEntity priceEntity = priceManager.getPriceByAssetIDAndDate(
-                        (int) assetEntity.getAssetID(),
-                        new java.sql.Date(tempDate.getTime()));
-                if (priceEntity == null) {
-                    priceEntity = new PriceEntity(
-                            (int) assetEntity.getAssetID(), new java.sql.Date(
-                            tempDate.getTime()), null, volume, close,
-                            open, high, low);
-                    priceManager.add(priceEntity);
-                } else {
-                    priceEntity.setVolume(volume);
-                    priceEntity.setClose(close);
-                    priceEntity.setOpen(open);
-                    priceEntity.setHigh(high);
-                    priceEntity.setLow(low);
-                    priceManager.update(priceEntity);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return true;
-    }
-
-    @Override
-    public boolean updateData(AssetEntity assetEntity) {
-        PriceManager priceManager = new PriceManager();
-        DateFormat df = new SimpleDateFormat("yyyyMMdd");
-
-        Date tempDate;
+        LocalDate tempDate;
         Double open, high, close, low, volume;
         String splitString[];
 
@@ -382,7 +281,10 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
             String strLine = br.readLine();
             while ((strLine = br.readLine()) != null) {
                 splitString = strLine.split(",");
-                tempDate = df.parse(splitString[1]);
+                tempDate = LocalDate.parse(splitString[1], df);
+                if ((tempDate.isAfter(toDate)) || (tempDate.isBefore(fromDate))) {
+                    continue;
+                }
                 open = Double.valueOf(splitString[2]);
                 high = Double.valueOf(splitString[3]);
                 low = Double.valueOf(splitString[4]);
@@ -391,12 +293,61 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
 
                 PriceEntity priceEntity = priceManager.getPriceByAssetIDAndDate(
                         (int) assetEntity.getAssetID(),
-                        new java.sql.Date(tempDate.getTime()));
+                        Date.valueOf(tempDate));
                 if (priceEntity == null) {
                     priceEntity = new PriceEntity(
-                            (int) assetEntity.getAssetID(), new java.sql.Date(
-                            tempDate.getTime()), null, volume, close,
-                            open, high, low);
+                            (int) assetEntity.getAssetID(), Date.valueOf(tempDate),
+                            null, volume, close, open, high, low);
+                    priceManager.add(priceEntity);
+                } else {
+                    priceEntity.setVolume(volume);
+                    priceEntity.setClose(close);
+                    priceEntity.setOpen(open);
+                    priceEntity.setHigh(high);
+                    priceEntity.setLow(low);
+                    priceManager.update(priceEntity);
+                }
+            }
+        } catch (IOException | IllegalStateException | NumberFormatException ex) {
+            Logger.getLogger(Cophieu68DataUpdate.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+        priceManager.closeConnection();
+        return true;
+    }
+
+    @Override
+    public boolean updateData(AssetEntity assetEntity) {
+        PriceManager priceManager = new PriceManager();
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyyMMdd");
+
+        LocalDate tempDate;
+        Double open, high, close, low, volume;
+        String splitString[];
+
+        try {
+            HttpResponse response = getHttpResponse(getUrlOfPriceDataFileByAssetSymbol(assetEntity.getSymbol()));
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    response.getEntity().getContent()));
+
+            String strLine = br.readLine();
+            while ((strLine = br.readLine()) != null) {
+                splitString = strLine.split(",");
+                tempDate = LocalDate.parse(splitString[1], df);
+                open = Double.valueOf(splitString[2]);
+                high = Double.valueOf(splitString[3]);
+                low = Double.valueOf(splitString[4]);
+                close = Double.valueOf(splitString[5]);
+                volume = Double.valueOf(splitString[6]);
+
+                PriceEntity priceEntity = priceManager.getPriceByAssetIDAndDate(
+                        (int) assetEntity.getAssetID(),
+                        Date.valueOf(tempDate));
+                if (priceEntity == null) {
+                    priceEntity = new PriceEntity(
+                            (int) assetEntity.getAssetID(), Date.valueOf(tempDate), 
+                            null, volume, close, open, high, low);
                     priceManager.add(priceEntity);
                 } else {
                     priceEntity.setVolume(volume);
@@ -408,7 +359,7 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
                 }
             }
             priceManager.closeConnection();
-        } catch (IOException | ParseException | SQLException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(Cophieu68DataUpdate.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
@@ -419,7 +370,7 @@ public class Cophieu68DataUpdate extends AbstractDataUpdate {
     public static void main(String[] args) throws IOException {
         Cophieu68DataUpdate updater = new Cophieu68DataUpdate();
         //updater.updateAssetList();
-        
+
         AssetManager assetManager = new AssetManager();
         for (AssetEntity assetEntity : assetManager.getAllAssets()) {
             System.out.println(assetEntity.toString());

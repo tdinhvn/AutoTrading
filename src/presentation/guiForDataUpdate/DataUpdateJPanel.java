@@ -15,6 +15,8 @@ import business.dataUpdate.DataUpdateAPI;
 import dataAccess.databaseManagement.entity.ExchangeEntity;
 import dataAccess.databaseManagement.manager.ExchangeManager;
 import dataAccess.databaseManagement.manager.PriceManager;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -70,8 +72,6 @@ public class DataUpdateJPanel extends javax.swing.JPanel {
         toDateJLabel = new javax.swing.JLabel();
         toDatejSpinner = new javax.swing.JSpinner();
         updateStatusjLabel = new javax.swing.JLabel();
-        exchangeUpdateJLabel = new javax.swing.JLabel();
-        exchangeUpdateJComboBox = new javax.swing.JComboBox();
 
         dataStatusJPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATA STATUS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
@@ -80,8 +80,7 @@ public class DataUpdateJPanel extends javax.swing.JPanel {
 
         exchangeJComboBox.setEditable(true);
         exchangeJComboBox.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exchangeJComboBoxActionPerformed(evt);
             }
         });
@@ -117,16 +116,14 @@ public class DataUpdateJPanel extends javax.swing.JPanel {
 
         updateJButton.setText("Update");
         updateJButton.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateJButtonActionPerformed(evt);
             }
         });
 
         sourceJComboBox.setModel(new javax.swing.DefaultComboBoxModel(business.dataUpdate.DataUpdateAPI.ONLINE_RESOURCES));
         sourceJComboBox.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sourceJComboBoxActionPerformed(evt);
             }
         });
@@ -137,8 +134,7 @@ public class DataUpdateJPanel extends javax.swing.JPanel {
         fromDatejSpinner.setModel(new javax.swing.SpinnerDateModel());
         fromDatejSpinner.setEditor(new JSpinner.DateEditor(fromDatejSpinner, "MM/dd/yyyy"));
         fromDatejSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
-            @Override
-			public void stateChanged(javax.swing.event.ChangeEvent evt) {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 fromDatejSpinnerStateChanged(evt);
             }
         });
@@ -152,38 +148,24 @@ public class DataUpdateJPanel extends javax.swing.JPanel {
         toDatejSpinner.setModel(new javax.swing.SpinnerDateModel());
         toDatejSpinner.setEditor(new JSpinner.DateEditor(toDatejSpinner, "MM/dd/yyyy"));
         toDatejSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
-            @Override
-			public void stateChanged(javax.swing.event.ChangeEvent evt) {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 toDatejSpinnerStateChanged(evt);
             }
         });
 
         updateStatusjLabel.setText("0.0% complete");
 
-        exchangeUpdateJLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        exchangeUpdateJLabel.setText("Exchange:");
-
-        exchangeUpdateJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        exchangeUpdateJComboBox.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exchangeUpdateJComboBoxActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout updateJPanelLayout = new javax.swing.GroupLayout(updateJPanel);
         updateJPanel.setLayout(updateJPanelLayout);
         updateJPanelLayout.setHorizontalGroup(
             updateJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(updateJPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(updateJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(updateStatusjLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(updateJPanelLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(updateJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(fromDateJLabel)
-                            .addComponent(sourceJLabel)
-                            .addComponent(exchangeUpdateJLabel))
+                            .addComponent(sourceJLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(updateJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(updateJPanelLayout.createSequentialGroup()
@@ -193,11 +175,12 @@ public class DataUpdateJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(toDatejSpinner))
                             .addGroup(updateJPanelLayout.createSequentialGroup()
-                                .addGroup(updateJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(exchangeUpdateJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(sourceJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(sourceJComboBox, 0, 331, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(updateJButton)))))
+                                .addComponent(updateJButton))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateJPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(updateStatusjLabel)))
                 .addContainerGap())
         );
 
@@ -215,13 +198,9 @@ public class DataUpdateJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(updateJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sourceJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sourceJLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(updateJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(exchangeUpdateJLabel)
-                    .addComponent(exchangeUpdateJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sourceJLabel)
                     .addComponent(updateJButton))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(updateStatusjLabel)
                 .addContainerGap())
         );
@@ -267,10 +246,9 @@ public class DataUpdateJPanel extends javax.swing.JPanel {
                             updateStatusjLabel.setText(dataUpdate.completePercentage + " complete");
                         }
                     };
-
+                    
                     timer.schedule(task1, 1000, 1000);
-
-                    dataUpdate.updateDataFromDateToDate((String) exchangeUpdateJComboBox.getSelectedItem(), fromDate, toDate);
+                    dataUpdate.updateDataFromDateToDate(fromDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), toDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 
                     task1.cancel();
                     updateDataStatus();
@@ -336,39 +314,14 @@ public class DataUpdateJPanel extends javax.swing.JPanel {
             }
         }
 
-        exchangeUpdateJComboBox.setModel(new DefaultComboBoxModel(listExchangeName));
-        exchangeUpdateJComboBox.updateUI();
-
         fromDatejSpinner.getModel().setValue(minDate);
     }//GEN-LAST:event_sourceJComboBoxActionPerformed
-
-    private void exchangeUpdateJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exchangeUpdateJComboBoxActionPerformed
-        String exchangeName = (String) exchangeUpdateJComboBox.getSelectedItem();
-        if (exchangeName.equals("All")) {
-            String[] listExchangeName = new String[dataUpdate.getExchangeNameList().size()];
-            Date minDate = new Date();
-            Date tempDate;
-            for (int i = 0; i < listExchangeName.length; ++i) {
-                listExchangeName[i] = dataUpdate.getExchangeNameList().get(i);
-                tempDate = new Date(priceManager.getLatestDateOfExchange(exchangeManager.getExchangeByName(listExchangeName[i]).getExchangeID()).getTime());
-                if (tempDate.before(minDate)) {
-                    minDate = tempDate;
-                }
-            }
-            fromDatejSpinner.getModel().setValue(minDate);
-        } else {
-            long exchangeID = exchangeManager.getExchangeByName(exchangeName).getExchangeID();
-            fromDatejSpinner.getModel().setValue(new Date(priceManager.getLatestDateOfExchange(exchangeID).getTime()));
-        }
-    }//GEN-LAST:event_exchangeUpdateJComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dataStatusJLabel;
     private javax.swing.JPanel dataStatusJPanel;
     private javax.swing.JComboBox exchangeJComboBox;
     private javax.swing.JLabel exchangeJLabel;
-    private javax.swing.JComboBox exchangeUpdateJComboBox;
-    private javax.swing.JLabel exchangeUpdateJLabel;
     private javax.swing.JLabel fromDateJLabel;
     private javax.swing.JSpinner fromDatejSpinner;
     private javax.swing.JComboBox sourceJComboBox;
@@ -411,9 +364,6 @@ public class DataUpdateJPanel extends javax.swing.JPanel {
                 }
             }
         }
-
-        exchangeUpdateJComboBox.setModel(new DefaultComboBoxModel(listExchangeName));
-        exchangeUpdateJComboBox.updateUI();
 
         fromDatejSpinner.getModel().setValue(minDate);
         toDatejSpinner.getModel().setValue(new Date());

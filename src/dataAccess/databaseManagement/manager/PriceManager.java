@@ -11,6 +11,8 @@ import dataAccess.databaseManagement.ConnectionFactory;
 import dataAccess.databaseManagement.entity.AssetEntity;
 import dataAccess.databaseManagement.entity.PriceEntity;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PriceManager {
 
@@ -27,10 +29,14 @@ public class PriceManager {
         return connection;
     }
     
-    public void closeConnection() throws SQLException {
+    public void closeConnection() {
         if (connection != null) {
-            connection.close();
-            connection = null;
+            try {
+                connection.close();
+                connection = null;
+            } catch (SQLException ex) {
+                Logger.getLogger(PriceManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

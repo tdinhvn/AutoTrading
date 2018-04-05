@@ -1,8 +1,8 @@
 package business.dataUpdate;
 
 import dataAccess.databaseManagement.entity.AssetEntity;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public abstract class AbstractDataUpdate {
 	protected String description;
@@ -50,11 +50,10 @@ public abstract class AbstractDataUpdate {
 //
 //	public abstract boolean updateData();
 
-	public abstract boolean updateDataFromDateToDate(String exchangeName,
-			Date fromDate, Date toDate);
+	public abstract boolean updateDataFromDateToDate(LocalDate fromDate, LocalDate toDate);
 	
 	public abstract boolean updateDataFromDateToDate(AssetEntity assetEntity,
-			Date fromDate, Date toDate);
+			LocalDate fromDate, LocalDate toDate);
         
         public abstract boolean updateData(AssetEntity assetEntity);
 }
